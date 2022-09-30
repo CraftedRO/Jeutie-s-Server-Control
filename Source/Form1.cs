@@ -650,7 +650,7 @@ namespace JeutieControl
       {
         if (this.worldServer.HasExited)
           return;
-        this.worldServer.Kill();
+        this.worldServer.CloseMainWindow();
       }
       catch (InvalidOperationException)
       {
@@ -678,7 +678,7 @@ namespace JeutieControl
       {
         if (this.authServer.HasExited)
           return;
-        this.authServer.Kill();
+        this.authServer.CloseMainWindow();
       }
       catch (InvalidOperationException)
       {
