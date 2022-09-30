@@ -227,7 +227,7 @@ namespace JeutieControl
       this.aboutToolStripMenuItem.Text = "About";
       this.aboutToolStripMenuItem.Click += new EventHandler(this.aboutToolStripMenuItem_Click);
       this.MySQLPath.BorderStyle = BorderStyle.FixedSingle;
-      this.MySQLPath.Font = new Font("Microsoft Sans Serif", 6.75f);
+      this.MySQLPath.Font = new Font("Microsoft Sans Serif", 7f);
       this.MySQLPath.Location = new Point(109, 282);
       this.MySQLPath.Name = "MySQLPath";
       this.MySQLPath.ReadOnly = true;
@@ -236,7 +236,7 @@ namespace JeutieControl
       this.MySQLPath.Text = "Path has not been set yet.";
       this.ServerPath.AllowDrop = true;
       this.ServerPath.BorderStyle = BorderStyle.FixedSingle;
-      this.ServerPath.Font = new Font("Microsoft Sans Serif", 6.75f, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
+      this.ServerPath.Font = new Font("Microsoft Sans Serif", 7f, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
       this.ServerPath.Location = new Point(109, 250);
       this.ServerPath.Name = "ServerPath";
       this.ServerPath.ReadOnly = true;
@@ -377,7 +377,7 @@ namespace JeutieControl
       this.log.TabIndex = 0;
       this.log.Text = "";
       this.ApachePath.BorderStyle = BorderStyle.FixedSingle;
-      this.ApachePath.Font = new Font("Microsoft Sans Serif", 6.75f);
+      this.ApachePath.Font = new Font("Microsoft Sans Serif", 7f);
       this.ApachePath.Location = new Point(109, 314);
       this.ApachePath.Name = "ApachePath";
       this.ApachePath.ReadOnly = true;
