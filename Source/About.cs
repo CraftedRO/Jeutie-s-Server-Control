@@ -25,9 +25,9 @@ namespace JeutieControl
     {
     }
 
-    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("http://www.jeutie.info/");
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("http://jordythery.be/");
 
-    private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("http://inlinevoid.com/");
+    private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start("http://craftedro.go.ro/");
 
     private void button1_Click(object sender, EventArgs e) => this.Close();
 
