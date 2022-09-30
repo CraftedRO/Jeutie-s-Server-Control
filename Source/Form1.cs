@@ -633,18 +633,14 @@ namespace JeutieControl
     {
       try
       {
-        if (!this.worldServer.HasExited)
-          return;
-        this.CheckPaths();
         if (!this.isServerPathCorrect)
           return;
         this.worldServer.Start();
         this.Log("Started the World server.");
       }
-      catch (InvalidOperationException ex)
+      catch
       {
-        this.worldServer.Start();
-        this.Log("Started the World server.");
+        this.Log("Error!  Can't start the World, incorrect server path.");
       }
     }
 
@@ -656,7 +652,7 @@ namespace JeutieControl
           return;
         this.worldServer.Kill();
       }
-      catch (InvalidOperationException ex)
+      catch (InvalidOperationException)
       {
       }
     }
@@ -665,18 +661,14 @@ namespace JeutieControl
     {
       try
       {
-        if (!this.authServer.HasExited)
-          return;
-        this.CheckPaths();
         if (!this.isServerPathCorrect)
           return;
         this.authServer.Start();
         this.Log("Started the Auth server.");
       }
-      catch (InvalidOperationException ex)
+      catch
       {
-        this.authServer.Start();
-        this.Log("Started the Auth server.");
+        this.Log("Error!  Can't start Auth, incorrect server path.");
       }
     }
 
@@ -688,17 +680,24 @@ namespace JeutieControl
           return;
         this.authServer.Kill();
       }
-      catch (InvalidOperationException ex)
+      catch (InvalidOperationException)
       {
       }
     }
 
     private void startMySQL_Click(object sender, EventArgs e)
     {
+      try 
+      {
       if (this.IsProcessRunning("mysqld"))
         return;
       this.mySQL.Start();
       this.Log("Started the MySQL server.");
+      }
+      catch
+      {
+        this.Log("Error!  Can't start the MySQL, incorrect server path.");
+      }
     }
 
     private void stopMySQL_Click(object sender, EventArgs e)
@@ -720,10 +719,9 @@ namespace JeutieControl
         this.apache.Start();
         this.Log("Started the Apache server.");
       }
-      catch (InvalidOperationException ex)
+      catch
       {
-        this.apache.Start();
-        this.Log("Started the Apache server.");
+        this.Log("Error!  Can't start the Apache, incorrect server path.");
       }
     }
 
@@ -737,7 +735,7 @@ namespace JeutieControl
           this.Log("Stopped the Apache server.");
         }
       }
-      catch (InvalidOperationException ex)
+      catch (InvalidOperationException)
       {
       }
       this.KillProcess("httpd");
@@ -756,7 +754,7 @@ namespace JeutieControl
           process.Kill();
           flag = true;
         }
-        catch (Win32Exception ex)
+        catch (Win32Exception)
         {
         }
       }
