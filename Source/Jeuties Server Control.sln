@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2022
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeutiesRepackControl", "Jeuties Repack Control.csproj", "{4346F670-DDB7-4582-88A5-B81903F79371}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JeutiesServerControl", "Jeuties Server Control.csproj", "{4346F670-DDB7-4582-88A5-B81903F79371}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

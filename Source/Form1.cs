@@ -413,7 +413,7 @@ namespace JeutieControl
       this.MainMenuStrip = this.menuStrip1;
       this.MaximizeBox = false;
       this.Name = nameof (Form1);
-      this.Text = "Jeutie's Repack Restarter";
+      this.Text = "Jeutie's Server Restarter";
       this.Load += new EventHandler(this.Form1_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
@@ -433,7 +433,7 @@ namespace JeutieControl
 
     private void Form1_Load(object sender, EventArgs e)
     {
-      this.log.Text = "Welcome to Jeutie's Blizzlike Repack Control Panel v1.1!";
+      this.log.Text = "Welcome to Jeutie's Server Control Panel v1.1 !";
       this.CheckForNewMachine();
       this.ServerPath.Text = Settings.Default.ServerPath;
       this.ApachePath.Text = Settings.Default.ApachePath;
