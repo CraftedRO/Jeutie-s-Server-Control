@@ -7,7 +7,6 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>JeutiesRepackControl</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <FileAlignment>512</FileAlignment>
     <RootNamespace>JeutieControl</RootNamespace>
