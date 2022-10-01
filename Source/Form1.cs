@@ -711,10 +711,7 @@ namespace JeutieControl
     {
       try
       {
-        if (!this.apache.HasExited)
-          return;
-        this.CheckPaths();
-        if (!this.isApachePathCorrect)
+        if (this.IsProcessRunning("httpd"))
           return;
         this.apache.Start();
         this.Log("Started the Apache server.");
