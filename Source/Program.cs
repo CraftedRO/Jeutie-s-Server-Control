@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace JeutieControl
 {
@@ -7,10 +8,28 @@ namespace JeutieControl
   {
     [STAThread]
     private static void Main()
-    {
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run((Form) new Form1());
-    }
+        {
+            bool instanceCountOne = false;
+ 
+            using (Mutex mtex = new Mutex(true, "MyRunningApp", out instanceCountOne))
+            {
+                if (instanceCountOne)
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Form1());
+                    mtex.ReleaseMutex();
+                }
+                else
+                {
+                    MessageBox.Show(
+						"An application instance is already running !",
+						"JeutiesServerControl - Notice",
+						MessageBoxButtons.OK,
+						MessageBoxIcon.Information
+					);
+                }
+            }
+        }
   }
 }
