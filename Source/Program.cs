@@ -23,11 +23,11 @@ namespace JeutieControl
                 else
                 {
                     MessageBox.Show(
-						"An application instance is already running !",
-						"JeutiesServerControl - Notice",
-						MessageBoxButtons.OK,
-						MessageBoxIcon.Information
-					);
+                        "An application instance is already running !",
+                        "JeutiesServerControl - Notice",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
                 }
             }
         }
