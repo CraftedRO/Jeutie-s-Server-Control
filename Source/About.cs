@@ -8,7 +8,7 @@ namespace JeutieControl
 {
   public class About : Form
   {
-    private IContainer components;
+    private IContainer components = null;
     private Button button1;
     private RichTextBox richTextBox1;
     private PictureBox pictureBox1;

@@ -24,7 +24,7 @@ namespace JeutieControl
                 {
                     MessageBox.Show(
                         "An application instance is already running !",
-                        "JeutiesServerControl - Notice",
+                        "Jeuties Server Restarter - Notice",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information
                     );

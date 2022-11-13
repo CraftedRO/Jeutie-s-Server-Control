@@ -7,7 +7,7 @@ namespace JeutieControl
 {
   public class Help : Form
   {
-    private IContainer components;
+    private IContainer components = null;
     private RichTextBox richTextBox1;
     private TextBox textBox1;
     private TextBox textBox2;

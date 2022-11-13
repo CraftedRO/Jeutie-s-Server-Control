@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>The controls of this application are self explanatory. Before using it, you will have to define the locations of the respective executables. The server path needs to be pointed to the core folder in which the authserver and worldserver applications reside. The MySQL path needs to be pointed to the Server/MySQL/bin folder. Last but not least, the Apache path needs to be pointed to the Server/Apache/bin folder. 
+    <value>The controls of this application are self explanatory. Before using it, you will have to define the locations of the respective executables. The server path needs to be pointed to the core folder in which the Authserver and Worldserver applications reside. The MySQL path needs to be pointed to the Server/MySQL/bin folder. Last but not least, the Apache path needs to be pointed to the Server/Apache/bin folder. 
 
 After successfuly pointing each path to the correct location, the red X will turn into a green checkmark indicating the application is ready to run.  
 

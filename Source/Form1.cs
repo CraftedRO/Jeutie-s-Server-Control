@@ -11,7 +11,7 @@ namespace JeutieControl
   public class Form1 : Form
   {
     public const string version = "1.1";
-    private IContainer components;
+    private IContainer components = null;
     private MenuStrip menuStrip1;
     private ToolStripMenuItem fileToolStripMenuItem;
     private ToolStripMenuItem exitToolStripMenuItem;
@@ -227,7 +227,7 @@ namespace JeutieControl
       this.aboutToolStripMenuItem.Text = "About";
       this.aboutToolStripMenuItem.Click += new EventHandler(this.aboutToolStripMenuItem_Click);
       this.MySQLPath.BorderStyle = BorderStyle.FixedSingle;
-      this.MySQLPath.Font = new Font("Microsoft Sans Serif", 7f);
+      this.MySQLPath.Font = new Font("Microsoft Sans Serif", 7.25f);
       this.MySQLPath.Location = new Point(109, 282);
       this.MySQLPath.Name = "MySQLPath";
       this.MySQLPath.ReadOnly = true;
@@ -236,7 +236,7 @@ namespace JeutieControl
       this.MySQLPath.Text = "Path has not been set yet.";
       this.ServerPath.AllowDrop = true;
       this.ServerPath.BorderStyle = BorderStyle.FixedSingle;
-      this.ServerPath.Font = new Font("Microsoft Sans Serif", 7f, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
+      this.ServerPath.Font = new Font("Microsoft Sans Serif", 7.25f, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
       this.ServerPath.Location = new Point(109, 250);
       this.ServerPath.Name = "ServerPath";
       this.ServerPath.ReadOnly = true;
@@ -377,7 +377,7 @@ namespace JeutieControl
       this.log.TabIndex = 0;
       this.log.Text = "";
       this.ApachePath.BorderStyle = BorderStyle.FixedSingle;
-      this.ApachePath.Font = new Font("Microsoft Sans Serif", 7f);
+      this.ApachePath.Font = new Font("Microsoft Sans Serif", 7.25f);
       this.ApachePath.Location = new Point(109, 314);
       this.ApachePath.Name = "ApachePath";
       this.ApachePath.ReadOnly = true;
@@ -433,7 +433,7 @@ namespace JeutieControl
 
     private void Form1_Load(object sender, EventArgs e)
     {
-      this.log.Text = "Welcome to Jeutie's Server Control Panel v1.1 !";
+      this.log.Text = "Welcome to Jeutie's Server Control Panel v2.0 !";
       this.CheckForNewMachine();
       this.ServerPath.Text = Settings.Default.ServerPath;
       this.ApachePath.Text = Settings.Default.ApachePath;
@@ -534,6 +534,7 @@ namespace JeutieControl
 
     private void ServerPathButton_Click(object sender, EventArgs e)
     {
+      ServerFolderBrowser.Description = "The server path needs to be pointed to the core folder in which the Authserver and Worldserver applications reside.";
       int num = (int) this.ServerFolderBrowser.ShowDialog();
       if (this.ServerFolderBrowser.SelectedPath != "")
       {
@@ -546,6 +547,7 @@ namespace JeutieControl
 
     private void MySQLPathButton_Click(object sender, EventArgs e)
     {
+      SqlFolderBrowser.Description = "The MySQL path needs to be pointed to the Server/MySQL/bin folder.";
       int num = (int) this.SqlFolderBrowser.ShowDialog();
       if (this.SqlFolderBrowser.SelectedPath != "")
       {
@@ -558,6 +560,7 @@ namespace JeutieControl
 
     private void ApachePathButton_Click(object sender, EventArgs e)
     {
+      ApacheFolderBrowser.Description = "The Apache path needs to be pointed to the Server/Apache/bin folder.";
       int num = (int) this.ApacheFolderBrowser.ShowDialog();
       if (this.ApacheFolderBrowser.SelectedPath != "")
       {
@@ -640,7 +643,7 @@ namespace JeutieControl
       }
       catch
       {
-        this.Log("Error!  Can't start the World, incorrect server path.");
+        this.Log("Error!  Can't start the World server, incorrect path.");
       }
     }
 
@@ -668,7 +671,7 @@ namespace JeutieControl
       }
       catch
       {
-        this.Log("Error!  Can't start Auth, incorrect server path.");
+        this.Log("Error!  Can't start Auth server, incorrect path.");
       }
     }
 
@@ -696,7 +699,7 @@ namespace JeutieControl
       }
       catch
       {
-        this.Log("Error!  Can't start the MySQL, incorrect server path.");
+        this.Log("Error!  Can't start the MySQL server, incorrect path.");
       }
     }
 
@@ -718,7 +721,7 @@ namespace JeutieControl
       }
       catch
       {
-        this.Log("Error!  Can't start the Apache, incorrect server path.");
+        this.Log("Error!  Can't start the Apache server, incorrect path.");
       }
     }
 
