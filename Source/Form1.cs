@@ -790,7 +790,7 @@ namespace JeutieControl
       }
       else
       {
-        this.log.AppendText("\n[" + DateTime.Now.ToString("HH:mm:ss") + "] " + text);
+        this.log.AppendText("\n[" + DateTime.Now.ToString("dd-MM-yy HH:mm:ss") + "] " + text);
         this.log.ScrollToCaret();
       }
     }
