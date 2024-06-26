@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Inlinevoid © 2022")]
+[assembly: AssemblyCopyright("Inlinevoid © 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("8aa43ed0-7f59-4c69-a9b4-5597513f9e16")]
