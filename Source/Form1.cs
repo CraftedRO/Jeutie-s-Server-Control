@@ -227,8 +227,8 @@ namespace JeutieControl
       this.aboutToolStripMenuItem.Text = "About";
       this.aboutToolStripMenuItem.Click += new EventHandler(this.aboutToolStripMenuItem_Click);
       this.MySQLPath.BorderStyle = BorderStyle.FixedSingle;
-      this.MySQLPath.Font = new Font("Microsoft Sans Serif", 7.25f);
-      this.MySQLPath.Location = new Point(109, 282);
+      this.MySQLPath.Font = new Font("Microsoft Sans Serif", 7.5f);
+      this.MySQLPath.Location = new Point(109, 280);
       this.MySQLPath.Name = "MySQLPath";
       this.MySQLPath.ReadOnly = true;
       this.MySQLPath.Size = new Size(270, 18);
@@ -236,8 +236,8 @@ namespace JeutieControl
       this.MySQLPath.Text = "Path has not been set yet.";
       this.ServerPath.AllowDrop = true;
       this.ServerPath.BorderStyle = BorderStyle.FixedSingle;
-      this.ServerPath.Font = new Font("Microsoft Sans Serif", 7.25f, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
-      this.ServerPath.Location = new Point(109, 250);
+      this.ServerPath.Font = new Font("Microsoft Sans Serif", 7.5f);
+      this.ServerPath.Location = new Point(109, 248);
       this.ServerPath.Name = "ServerPath";
       this.ServerPath.ReadOnly = true;
       this.ServerPath.Size = new Size(270, 18);
@@ -377,8 +377,8 @@ namespace JeutieControl
       this.log.TabIndex = 0;
       this.log.Text = "";
       this.ApachePath.BorderStyle = BorderStyle.FixedSingle;
-      this.ApachePath.Font = new Font("Microsoft Sans Serif", 7.25f);
-      this.ApachePath.Location = new Point(109, 314);
+      this.ApachePath.Font = new Font("Microsoft Sans Serif", 7.5f);
+      this.ApachePath.Location = new Point(109, 312);
       this.ApachePath.Name = "ApachePath";
       this.ApachePath.ReadOnly = true;
       this.ApachePath.Size = new Size(270, 18);
@@ -479,7 +479,7 @@ namespace JeutieControl
     {
       if (this.AutoRestart.Checked)
       {
-        if (!this.isServerPathCorrect)
+        if (!this.isServerPathCorrect || !this.IsProcessRunning("mysqld"))
           return;
         this.authServer.Start();
         ++this.authServerRestartCount;
@@ -493,7 +493,7 @@ namespace JeutieControl
     {
       if (this.AutoRestart.Checked)
       {
-        if (!this.isServerPathCorrect)
+        if (!this.isServerPathCorrect || !this.IsProcessRunning("mysqld"))
           return;
         this.worldServer.Start();
         ++this.worldServerRestartCount;
@@ -637,13 +637,25 @@ namespace JeutieControl
       try
       {
         if (!this.isServerPathCorrect)
+        {
+          this.Log("Error!  Can't start the World server, incorrect path.");
           return;
+        }
+        else if (this.IsProcessRunning("worldserver"))
+        {
+          this.Log("Error!  World server is already started.");
+          return;
+        }
+        else if (!this.IsProcessRunning("mysqld"))
+        {
+          this.Log("Error!  Please start MySQL server first.");
+          return;
+        }
         this.worldServer.Start();
         this.Log("Started the World server.");
       }
-      catch
+      catch (InvalidOperationException)
       {
-        this.Log("Error!  Can't start the World server, incorrect path.");
       }
     }
 
@@ -651,7 +663,7 @@ namespace JeutieControl
     {
       try
       {
-        if (this.worldServer.HasExited)
+        if (/*this.worldServer.HasExited ||*/!this.KillProcess("worldserver") || !this.IsProcessRunning("worldserver"))
           return;
         this.worldServer.CloseMainWindow();
       }
@@ -665,13 +677,25 @@ namespace JeutieControl
       try
       {
         if (!this.isServerPathCorrect)
+        {
+          this.Log("Error!  Can't start the Auth server, incorrect path.");
           return;
+        }
+        else if (this.IsProcessRunning("authserver"))
+        {
+          this.Log("Error!  Auth server is already started.");
+          return;
+        }
+        else if (!this.IsProcessRunning("mysqld"))
+        {
+          this.Log("Error!  Please start MySQL server first.");
+          return;
+        }
         this.authServer.Start();
         this.Log("Started the Auth server.");
       }
-      catch
+      catch (InvalidOperationException)
       {
-        this.Log("Error!  Can't start Auth server, incorrect path.");
       }
     }
 
@@ -679,7 +703,7 @@ namespace JeutieControl
     {
       try
       {
-        if (this.authServer.HasExited)
+        if (/*this.authServer.HasExited ||*/!this.KillProcess("authserver") || !this.IsProcessRunning("authserver"))
           return;
         this.authServer.CloseMainWindow();
       }
@@ -690,38 +714,59 @@ namespace JeutieControl
 
     private void startMySQL_Click(object sender, EventArgs e)
     {
-      try 
+      try
       {
-      if (this.IsProcessRunning("mysqld"))
-        return;
-      this.mySQL.Start();
-      this.Log("Started the MySQL server.");
+        if (!this.isMysqlPathCorrect)
+        {
+          this.Log("Error!  Can't start the MySQL server, incorrect path.");
+          return;
+        }
+        else if (this.IsProcessRunning("mysqld"))
+        {
+          this.Log("Error!  MySQL server is already started.");
+          return;
+        }
+        this.mySQL.Start();
+        this.Log("Started the MySQL server.");
       }
-      catch
+      catch (InvalidOperationException)
       {
-        this.Log("Error!  Can't start the MySQL server, incorrect path.");
       }
     }
 
     private void stopMySQL_Click(object sender, EventArgs e)
     {
-      if (!this.KillProcess("mysqld"))
-        return;
-      this.Log("Stopped the MySQL server.");
+      try
+      {
+        if (/*this.mySQL.HasExited ||*/!this.KillProcess("mysqld") || !this.IsProcessRunning("mysqld"))
+          return;
+        this.KillProcess("mysqld");
+        this.Log("Stopped the MySQL server.");
+      }
+      catch (InvalidOperationException)
+      {
+      }
     }
 
     private void startApache_Click(object sender, EventArgs e)
     {
       try
       {
-        if (this.IsProcessRunning("httpd"))
+        if (!this.isApachePathCorrect)
+        {
+          this.Log("Error!  Can't start the Apache server, incorrect path.");
           return;
+        }
+        else if (this.IsProcessRunning("httpd"))
+        {
+          this.Log("Error!  Apache server is already started.");
+          return;
+        }
         this.apache.Start();
         this.Log("Started the Apache server.");
       }
-      catch
+      catch (InvalidOperationException)
       {
-        this.Log("Error!  Can't start the Apache server, incorrect path.");
       }
     }
 
@@ -729,16 +774,14 @@ namespace JeutieControl
     {
       try
       {
-        if (!this.apache.HasExited)
-        {
-          this.apache.Kill();
-          this.Log("Stopped the Apache server.");
-        }
+        if (/*this.apache.HasExited ||*/!this.KillProcess("httpd") || !this.IsProcessRunning("httpd"))
+          return;
+        this.KillProcess("httpd");
+        this.Log("Stopped the Apache server.");
       }
       catch (InvalidOperationException)
       {
       }
-      this.KillProcess("httpd");
     }
 
     private bool IsProcessRunning(string processName) => Process.GetProcessesByName(processName).Length != 0;

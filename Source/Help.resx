@@ -120,13 +120,13 @@
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>The controls of this application are self explanatory. Before using it, you will have to define the locations of the respective executables. The server path needs to be pointed to the core folder in which the Authserver and Worldserver applications reside. The MySQL path needs to be pointed to the Server/MySQL/bin folder. Last but not least, the Apache path needs to be pointed to the Server/Apache/bin folder. 
 
-After successfuly pointing each path to the correct location, the red X will turn into a green checkmark indicating the application is ready to run.  
+After successfully pointing each path to the correct location, the red label will turn into green indicating the application is ready to run.  
 
 If checked, the auth and world servers can automatically restart upon any crashes. Be sure to uncheck this box before trying to stop the servers. The MySQL server is mandatory for the auth and world servers to succesfully boot, the Apache server is optional. 
 </value>
   </data>
   <data name="richTextBox2.Text" xml:space="preserve">
-    <value>1) The Apache server will not work if another application is utilizing port 80. (Such as Skype.) Please either close the application, or change the port in the Apache configuration. Aditionally, the Apache server will not function properly if Apache was installed as a service.
+    <value>1) The Apache server will not work if another application is utilizing port 80. Please either close the application, or change the port in the Apache configuration. Aditionally, the Apache server will not function properly if Apache was installed as a service.
 
 2) The servers will not function if the paths aren't set correctly. Please set them correctly as explained above.
 
